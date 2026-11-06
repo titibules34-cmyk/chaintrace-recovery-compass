@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const WORDS = ["digital", "tracing", "intelligence", "recovery"];
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Globe, Users, Monitor, DollarSign, Code2, BarChart3 } from "lucide-react";
+import { Globe, Users, Monitor, DollarSign, Code2, BarChart3, MapPin, Lock, ShieldCheck, ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -98,15 +98,31 @@ const tools = [
   },
 ];
 
-const faqs = [
-  ["Can recovery of lost funds be guaranteed?", "No. No legitimate investigator can guarantee recovery. Outcomes depend on the facts, platforms and institutions involved."],
-  ["Will you ask for my seed phrase or private key?", "Never. Don't share seed phrases, private keys, passwords, PINs or one-time codes with anyone claiming to help."],
-  ["What should I prepare?", "A short timeline, transaction IDs, public wallet addresses, platform names and redacted copies of relevant messages."],
-  ["Is this legal or financial advice?", "No. This is digital research and documentation. Speak with a qualified professional about your circumstances."],
+const standards = [
+  {
+    icon: Globe,
+    title: "Cross-Border Forensic Jurisdiction",
+    text: "Coordinating with international counsel, forensic exchanges, and law enforcement agencies across 6 continents.",
+  },
+  {
+    icon: Lock,
+    title: "Strict Non-Disclosure & Evidence Security",
+    text: "Every case inquiry is protected by encrypted intake protocols and strict chain-of-custody documentation.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Court-Admissible Evidence Packages",
+    text: "Expert witness reports, on-chain fund flows, and attribution intelligence ready for civil and criminal proceedings.",
+  },
+];
+
+const companyFacts = [
+  ["Companies House Co. No.", "10135589"],
+  ["Incorporated", "20 April 2016 (Active)"],
+  ["Company Classification", "Private Limited Company"],
 ];
 
 function Index() {
-  const [open, setOpen] = useState<number | null>(0);
   const [word, setWord] = useState(0);
   useEffect(() => {
     const t = setInterval(() => setWord((w) => (w + 1) % WORDS.length), 2200);
