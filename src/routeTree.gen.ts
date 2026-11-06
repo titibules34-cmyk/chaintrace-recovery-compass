@@ -11,7 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AssetRecoveryRouteImport } from './routes/asset-recovery'
+import { Route as CryptocurrencyTracingRouteImport } from './routes/cryptocurrency-tracing'
 import { Route as CyberIntelligenceRouteImport } from './routes/cyber-intelligence'
+import { Route as CyberInvestigationTeamRouteImport } from './routes/cyber-investigation-team'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,40 +25,74 @@ const AssetRecoveryRoute = AssetRecoveryRouteImport.update({
   path: '/asset-recovery',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CryptocurrencyTracingRoute = CryptocurrencyTracingRouteImport.update({
+  id: '/cryptocurrency-tracing',
+  path: '/cryptocurrency-tracing',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CyberIntelligenceRoute = CyberIntelligenceRouteImport.update({
   id: '/cyber-intelligence',
   path: '/cyber-intelligence',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CyberInvestigationTeamRoute = CyberInvestigationTeamRouteImport.update({
+  id: '/cyber-investigation-team',
+  path: '/cyber-investigation-team',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/asset-recovery': typeof AssetRecoveryRoute
+  '/cryptocurrency-tracing': typeof CryptocurrencyTracingRoute
   '/cyber-intelligence': typeof CyberIntelligenceRoute
+  '/cyber-investigation-team': typeof CyberInvestigationTeamRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/asset-recovery': typeof AssetRecoveryRoute
+  '/cryptocurrency-tracing': typeof CryptocurrencyTracingRoute
   '/cyber-intelligence': typeof CyberIntelligenceRoute
+  '/cyber-investigation-team': typeof CyberInvestigationTeamRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/asset-recovery': typeof AssetRecoveryRoute
+  '/cryptocurrency-tracing': typeof CryptocurrencyTracingRoute
   '/cyber-intelligence': typeof CyberIntelligenceRoute
+  '/cyber-investigation-team': typeof CyberInvestigationTeamRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/asset-recovery' | '/cyber-intelligence'
+  fullPaths:
+    | '/'
+    | '/asset-recovery'
+    | '/cryptocurrency-tracing'
+    | '/cyber-intelligence'
+    | '/cyber-investigation-team'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/asset-recovery' | '/cyber-intelligence'
-  id: '__root__' | '/' | '/asset-recovery' | '/cyber-intelligence'
+  to:
+    | '/'
+    | '/asset-recovery'
+    | '/cryptocurrency-tracing'
+    | '/cyber-intelligence'
+    | '/cyber-investigation-team'
+  id:
+    | '__root__'
+    | '/'
+    | '/asset-recovery'
+    | '/cryptocurrency-tracing'
+    | '/cyber-intelligence'
+    | '/cyber-investigation-team'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AssetRecoveryRoute: typeof AssetRecoveryRoute
+  CryptocurrencyTracingRoute: typeof CryptocurrencyTracingRoute
   CyberIntelligenceRoute: typeof CyberIntelligenceRoute
+  CyberInvestigationTeamRoute: typeof CyberInvestigationTeamRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -75,11 +111,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AssetRecoveryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cryptocurrency-tracing': {
+      id: '/cryptocurrency-tracing'
+      path: '/cryptocurrency-tracing'
+      fullPath: '/cryptocurrency-tracing'
+      preLoaderRoute: typeof CryptocurrencyTracingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cyber-intelligence': {
       id: '/cyber-intelligence'
       path: '/cyber-intelligence'
       fullPath: '/cyber-intelligence'
       preLoaderRoute: typeof CyberIntelligenceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cyber-investigation-team': {
+      id: '/cyber-investigation-team'
+      path: '/cyber-investigation-team'
+      fullPath: '/cyber-investigation-team'
+      preLoaderRoute: typeof CyberInvestigationTeamRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -88,7 +138,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AssetRecoveryRoute: AssetRecoveryRoute,
+  CryptocurrencyTracingRoute: CryptocurrencyTracingRoute,
   CyberIntelligenceRoute: CyberIntelligenceRoute,
+  CyberInvestigationTeamRoute: CyberInvestigationTeamRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
