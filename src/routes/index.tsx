@@ -137,7 +137,7 @@ function Index() {
         </a>
         <nav className="flex items-center gap-5 text-sm text-muted-foreground">
           <a href="#services" className="hidden hover:text-foreground sm:inline">Services</a>
-          <a href="#faq" className="hidden hover:text-foreground sm:inline">FAQ</a>
+          <a href="#offices" className="hidden hover:text-foreground sm:inline">Offices</a>
           <a href="#contact" className="rounded-full bg-primary px-4 py-1.5 font-semibold text-primary-foreground">Contact</a>
         </nav>
       </header>
@@ -247,23 +247,69 @@ function Index() {
         </div>
       </section>
 
-      <section id="faq" className="mx-auto w-[min(100%-2rem,48rem)] py-20">
-        <h2 className="text-center text-3xl font-extrabold">Straight answers.</h2>
-        <div className="mt-8 divide-y divide-border rounded-xl border border-border">
-          {faqs.map(([q, a], i) => (
-            <div key={q}>
-              <button
-                type="button"
-                aria-expanded={open === i}
-                onClick={() => setOpen(open === i ? null : i)}
-                className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left font-semibold"
-              >
-                {q}
-                <span className="text-accent" aria-hidden="true">{open === i ? "−" : "+"}</span>
-              </button>
-              {open === i && <p className="px-5 pb-4 text-sm text-muted-foreground">{a}</p>}
+      <section id="offices" className="mx-auto w-[min(100%-2rem,64rem)] py-20">
+        <div className="text-center">
+          <p className="eyebrow">Global Network</p>
+          <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl">Our Office Locations</h2>
+          <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
+            Strategic investigative presence coordinating cross-border operations worldwide.
+          </p>
+        </div>
+
+        <div className="mt-12 grid overflow-hidden rounded-2xl border border-border bg-card lg:grid-cols-2">
+          <div className="flex flex-col gap-5 p-8 sm:p-10">
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-bold tracking-wide text-accent">
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
+                Active Operational Headquarters
+              </span>
+              <span className="rounded-full border border-border bg-secondary px-3 py-1 text-xs font-bold tracking-wide text-muted-foreground">
+                United Kingdom
+              </span>
             </div>
-          ))}
+            <div>
+              <h3 className="text-2xl font-extrabold">Crypto Recovery Services Ltd</h3>
+              <p className="mt-1 text-sm font-semibold text-accent">Registered Office &amp; Global Investigations Command</p>
+            </div>
+            <div className="flex items-start gap-4 rounded-xl border border-border bg-background/60 p-5">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-accent">
+                <MapPin className="h-5 w-5" aria-hidden="true" />
+              </span>
+              <div>
+                <p className="text-xs font-bold tracking-widest text-muted-foreground">Official Registered Address</p>
+                <p className="mt-1 text-sm font-semibold leading-relaxed">
+                  30 Wynnstay Road, Colwyn Bay, Conwy, Wales, LL29 8NB, United Kingdom
+                </p>
+              </div>
+            </div>
+            <dl className="mt-auto divide-y divide-border border-t border-border text-sm">
+              {companyFacts.map(([label, value]) => (
+                <div key={label} className="flex items-center justify-between gap-4 py-3">
+                  <dt className="text-muted-foreground">{label}</dt>
+                  <dd className="font-semibold">{value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+
+          <div className="flex flex-col gap-4 border-t border-border bg-background/40 p-8 sm:p-10 lg:border-l lg:border-t-0">
+            <h3 className="text-lg font-bold">Operational Scope &amp; Forensic Standards</h3>
+            {standards.map(({ icon: Icon, title, text }) => (
+              <div key={title} className="flex items-start gap-4 rounded-xl border border-border bg-card p-5 transition hover:border-primary">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-accent">
+                  <Icon className="h-5 w-5" aria-hidden="true" />
+                </span>
+                <div>
+                  <p className="font-semibold">{title}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">{text}</p>
+                </div>
+              </div>
+            ))}
+            <a href="#contact" className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-glow">
+              Connect With Our Headquarters
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </a>
+          </div>
         </div>
       </section>
 
