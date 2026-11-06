@@ -137,11 +137,11 @@ function Index() {
                   Explore Capabilities &rarr;
                 </Link>
               ) : title === "Cyber Investigation Team" ? (
-                <Link to="/cyber-intelligence" search={{ team: true }} className="mt-auto text-sm font-semibold text-accent hover:underline">
+                <Link to="/cyber-investigation-team" className="mt-auto text-sm font-semibold text-accent hover:underline">
                   Explore Capabilities &rarr;
                 </Link>
               ) : title === "Cryptocurrency Tracing" ? (
-                <Link to="/asset-recovery" search={{ crypto: true }} className="mt-auto text-sm font-semibold text-accent hover:underline">
+                <Link to="/cryptocurrency-tracing" className="mt-auto text-sm font-semibold text-accent hover:underline">
                   Explore Capabilities &rarr;
                 </Link>
               ) : (
