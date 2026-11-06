@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 const WORDS = ["digital", "tracing", "intelligence", "recovery"];
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { Globe, Users, Monitor, DollarSign, Code2, BarChart3 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -56,6 +57,45 @@ const steps = [
   ["Review", "Check your records and relevant public data."],
   ["Document", "Organise findings into a referenced timeline."],
   ["Next steps", "Explain what the evidence supports and who can help."],
+];
+
+const tools = [
+  {
+    icon: Globe,
+    tag: "OSINT",
+    title: "Open Intelligence",
+    text: "Deep-web data harvesting, digital footprint analysis, and public ledger reconnaissance.",
+  },
+  {
+    icon: Users,
+    tag: "HUMINT",
+    title: "Human Intelligence",
+    text: "Direct confidential sourcing, field investigations, and discreet intelligence verification.",
+  },
+  {
+    icon: Monitor,
+    tag: "CYBINT",
+    title: "Cyber Intelligence",
+    text: "Network infrastructure tracking, threat vector mapping, and malicious server attribution.",
+  },
+  {
+    icon: DollarSign,
+    tag: "FININT",
+    title: "Financial Intelligence",
+    text: "Offshore corporate entity tracing, banking flow analysis, and cross-border money trails.",
+  },
+  {
+    icon: Code2,
+    tag: "SOFTWARE",
+    title: "Investigative Software",
+    text: "Proprietary case management tools, visual link mapping, and forensic graph analysis.",
+  },
+  {
+    icon: BarChart3,
+    tag: "ANALYSIS",
+    title: "Intelligence Analysis",
+    text: "Comprehensive correlation, anomaly detection, and court-admissible forensic reporting.",
+  },
 ];
 
 const faqs = [
@@ -162,6 +202,31 @@ function Index() {
               <h3 className="mt-2 font-semibold">{title}</h3>
               <p className="mt-1 text-sm text-muted-foreground">{text}</p>
             </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="tools" className="mx-auto w-[min(100%-2rem,64rem)] py-20">
+        <div className="text-center">
+          <p className="eyebrow">Tools</p>
+          <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl">Cyber Tools, Software &amp; Resources</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+            We use state-of-the-art Cyber Tools, Software Solutions, closed databases, Open Intelligence (OSINT),
+            Human Intelligence (HUMINT), Cyber Intelligence (CYBINT), and Financial Intelligence (FININT).
+          </p>
+        </div>
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {tools.map(({ icon: Icon, tag, title, text }) => (
+            <article key={title} className="rounded-2xl border border-border bg-card p-6 transition hover:border-primary">
+              <div className="flex items-start justify-between">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-accent">
+                  <Icon className="h-5 w-5" aria-hidden="true" />
+                </span>
+                <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-bold tracking-wide text-accent">{tag}</span>
+              </div>
+              <h3 className="mt-5 text-lg font-bold">{title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{text}</p>
+            </article>
           ))}
         </div>
       </section>
