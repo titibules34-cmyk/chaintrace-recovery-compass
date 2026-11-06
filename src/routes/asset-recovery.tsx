@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { CryptocurrencyTracing } from "../components/CryptocurrencyTracing";
 
 export const Route = createFileRoute("/asset-recovery")({
   head: () => ({
@@ -19,8 +18,7 @@ export const Route = createFileRoute("/asset-recovery")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  validateSearch: (search: Record<string, unknown>) => ({ crypto: search.crypto === true || search.crypto === "1" }),
-  component: AssetRecoveryRouter,
+  component: AssetRecovery,
 });
 
 const methods = [
@@ -36,10 +34,6 @@ const methods = [
   },
 ];
 
-function AssetRecoveryRouter() {
-  const { crypto } = Route.useSearch();
-  return crypto ? <CryptocurrencyTracing /> : <AssetRecovery />;
-}
 
 function AssetRecovery() {
   return (
