@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 const WORDS = ["digital", "tracing", "intelligence", "recovery"];
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { Globe, Users, Monitor, DollarSign, Code2, BarChart3 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -56,6 +57,45 @@ const steps = [
   ["Review", "Check your records and relevant public data."],
   ["Document", "Organise findings into a referenced timeline."],
   ["Next steps", "Explain what the evidence supports and who can help."],
+];
+
+const tools = [
+  {
+    icon: Globe,
+    tag: "OSINT",
+    title: "Open Intelligence",
+    text: "Deep-web data harvesting, digital footprint analysis, and public ledger reconnaissance.",
+  },
+  {
+    icon: Users,
+    tag: "HUMINT",
+    title: "Human Intelligence",
+    text: "Direct confidential sourcing, field investigations, and discreet intelligence verification.",
+  },
+  {
+    icon: Monitor,
+    tag: "CYBINT",
+    title: "Cyber Intelligence",
+    text: "Network infrastructure tracking, threat vector mapping, and malicious server attribution.",
+  },
+  {
+    icon: DollarSign,
+    tag: "FININT",
+    title: "Financial Intelligence",
+    text: "Offshore corporate entity tracing, banking flow analysis, and cross-border money trails.",
+  },
+  {
+    icon: Code2,
+    tag: "SOFTWARE",
+    title: "Investigative Software",
+    text: "Proprietary case management tools, visual link mapping, and forensic graph analysis.",
+  },
+  {
+    icon: BarChart3,
+    tag: "ANALYSIS",
+    title: "Intelligence Analysis",
+    text: "Comprehensive correlation, anomaly detection, and court-admissible forensic reporting.",
+  },
 ];
 
 const faqs = [
