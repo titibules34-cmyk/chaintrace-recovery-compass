@@ -206,6 +206,31 @@ function Index() {
         </div>
       </section>
 
+      <section id="tools" className="mx-auto w-[min(100%-2rem,64rem)] py-20">
+        <div className="text-center">
+          <p className="eyebrow">Tools</p>
+          <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl">Cyber Tools, Software &amp; Resources</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+            We use state-of-the-art Cyber Tools, Software Solutions, closed databases, Open Intelligence (OSINT),
+            Human Intelligence (HUMINT), Cyber Intelligence (CYBINT), and Financial Intelligence (FININT).
+          </p>
+        </div>
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {tools.map(({ icon: Icon, tag, title, text }) => (
+            <article key={title} className="rounded-2xl border border-border bg-card p-6 transition hover:border-primary">
+              <div className="flex items-start justify-between">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-accent">
+                  <Icon className="h-5 w-5" aria-hidden="true" />
+                </span>
+                <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-bold tracking-wide text-accent">{tag}</span>
+              </div>
+              <h3 className="mt-5 text-lg font-bold">{title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section id="faq" className="mx-auto w-[min(100%-2rem,48rem)] py-20">
         <h2 className="text-center text-3xl font-extrabold">Straight answers.</h2>
         <div className="mt-8 divide-y divide-border rounded-xl border border-border">
