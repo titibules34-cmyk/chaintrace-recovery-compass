@@ -117,8 +117,8 @@ const standards = [
 ];
 
 const companyFacts = [
-  ["Companies House Co. No.", "10135589"],
-  ["Incorporated", "20 April 2016 (Active)"],
+  ["Companies House Co. No.", "16458332"],
+  ["Incorporated", "19 May 2025 (Active)"],
   ["Company Classification", "Private Limited Company"],
 ];
 
@@ -268,8 +268,12 @@ function Index() {
               </span>
             </div>
             <div>
-              <h3 className="text-2xl font-extrabold">Crypto Recovery Services Ltd</h3>
+              <h3 className="text-2xl font-extrabold">Cyber Justice Ltd</h3>
               <p className="mt-1 text-sm font-semibold text-accent">Registered Office &amp; Global Investigations Command</p>
+              <p className="mt-3 flex items-center gap-2 text-lg font-bold">
+                <MapPin className="h-5 w-5 text-accent" aria-hidden="true" />
+                London, United Kingdom
+              </p>
             </div>
             <div className="flex items-start gap-4 rounded-xl border border-border bg-background/60 p-5">
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-accent">
@@ -278,7 +282,7 @@ function Index() {
               <div>
                 <p className="text-xs font-bold tracking-widest text-muted-foreground">Official Registered Address</p>
                 <p className="mt-1 text-sm font-semibold leading-relaxed">
-                  30 Wynnstay Road, Colwyn Bay, Conwy, Wales, LL29 8NB, United Kingdom
+                  Unit A1008, 4-6 Greatorex Street, London, United Kingdom, E1 5NF
                 </p>
               </div>
             </div>
