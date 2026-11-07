@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const WORDS = ["digital", "tracing", "intelligence", "recovery"];
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Globe, Users, Monitor, DollarSign, Code2, BarChart3, MapPin, Lock, ShieldCheck, ArrowRight } from "lucide-react";
+import { Globe, Users, Monitor, DollarSign, Code2, BarChart3, MapPin, Lock, ShieldCheck, ArrowRight, Phone, Clock, Send } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -120,6 +120,39 @@ const companyFacts = [
   ["Companies House Co. No.", "16458332"],
   ["Incorporated", "19 May 2025 (Active)"],
   ["Company Classification", "Private Limited Company"],
+];
+
+const CONTACT_EMAIL = "info@cyberjustice.uk";
+
+const contactCards = [
+  {
+    icon: Phone,
+    title: "Direct Case Intake & Hotline",
+    text: (
+      <>
+        Inquire directly via{" "}
+        <a href={`mailto:${CONTACT_EMAIL}`} className="font-semibold text-accent hover:underline">
+          {CONTACT_EMAIL}
+        </a>{" "}
+        or the confidential case form.
+      </>
+    ),
+  },
+  {
+    icon: Lock,
+    title: "100% Confidential",
+    text: "All inquiries are protected by strict non-disclosure and encrypted protocols.",
+  },
+  {
+    icon: Clock,
+    title: "Rapid 24-Hour Response",
+    text: "Our global forensic team analyzes case inquiries and responds within 24 hours.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Certified Investigators",
+    text: "UK-Registered and international forensic jurisdiction coverage.",
+  },
 ];
 
 function Index() {
@@ -318,14 +351,84 @@ function Index() {
       </section>
 
       <section id="contact" className="mx-auto w-[min(100%-2rem,64rem)] pb-20">
-        <div className="rounded-2xl border border-border bg-card p-8 text-center sm:p-12">
-          <h2 className="text-3xl font-extrabold">Make the next step an informed one.</h2>
-          <p className="mx-auto mt-3 max-w-lg text-muted-foreground">
-            Send a short, redacted summary of what happened. Never include passwords, private keys or seed phrases.
-          </p>
-          <a href="mailto:hello@cyberjustice.example" className="mt-6 inline-block rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-glow">
-            Email us
-          </a>
+        <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
+          <div>
+            <p className="eyebrow">Book appointment now!</p>
+            <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl">Contact With Us</h2>
+            <p className="mt-4 max-w-md text-muted-foreground">
+              We offer complimentary consultations in order to determine if our Asset Recovery and
+              Intelligence Services are right for your case.
+            </p>
+            <div className="mt-8 flex flex-col gap-4">
+              {contactCards.map(({ icon: Icon, title, text }) => (
+                <div key={title} className="flex items-start gap-4 rounded-xl border border-border bg-card p-5 transition hover:border-primary">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-accent">
+                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <div>
+                    <p className="font-semibold">{title}</p>
+                    <p className="mt-1 text-sm text-muted-foreground">{text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-border bg-card p-6 sm:p-8">
+            <h3 className="text-xl font-extrabold">Request Confidential Consultation</h3>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Fill in your details below to connect with an intelligence specialist.
+            </p>
+            <form
+              className="mt-6 flex flex-col gap-4"
+              onSubmit={(e) => {
+                e.preventDefault();
+                const data = new FormData(e.currentTarget);
+                const subject = `Case inquiry: ${data.get("subject") || "Confidential consultation"}`;
+                const body = [
+                  `Name: ${data.get("name")}`,
+                  `Email: ${data.get("email")}`,
+                  `Phone: ${data.get("phone")}`,
+                  "",
+                  String(data.get("message") || ""),
+                ].join("\n");
+                window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+              }}
+            >
+              <div className="grid gap-4 sm:grid-cols-2">
+                <label className="flex flex-col gap-1.5 text-sm font-semibold">
+                  Full Name
+                  <input name="name" required placeholder="John Doe" className="rounded-lg border border-input bg-background px-3.5 py-2.5 text-sm font-normal placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring" />
+                </label>
+                <label className="flex flex-col gap-1.5 text-sm font-semibold">
+                  Email Address
+                  <input name="email" type="email" required placeholder="john@example.com" className="rounded-lg border border-input bg-background px-3.5 py-2.5 text-sm font-normal placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring" />
+                </label>
+                <label className="flex flex-col gap-1.5 text-sm font-semibold">
+                  Phone Number
+                  <input name="phone" type="tel" placeholder="+44 7000 000000" className="rounded-lg border border-input bg-background px-3.5 py-2.5 text-sm font-normal placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring" />
+                </label>
+                <label className="flex flex-col gap-1.5 text-sm font-semibold">
+                  Subject
+                  <input name="subject" placeholder="e.g. Crypto Recovery / Tracing" className="rounded-lg border border-input bg-background px-3.5 py-2.5 text-sm font-normal placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring" />
+                </label>
+              </div>
+              <label className="flex flex-col gap-1.5 text-sm font-semibold">
+                Case Overview / Message
+                <textarea name="message" required rows={5} placeholder="Please provide relevant transaction hashes, dates, or details (do not include private keys)..." className="resize-y rounded-lg border border-input bg-background px-3.5 py-2.5 text-sm font-normal placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring" />
+              </label>
+              <button type="submit" className="mt-1 inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-glow transition hover:opacity-90">
+                Send Message
+                <Send className="h-4 w-4" aria-hidden="true" />
+              </button>
+              <p className="text-center text-xs text-muted-foreground">
+                Prefer email? Write to us directly at{" "}
+                <a href={`mailto:${CONTACT_EMAIL}`} className="font-semibold text-accent hover:underline">
+                  {CONTACT_EMAIL}
+                </a>
+              </p>
+            </form>
+          </div>
         </div>
       </section>
 
