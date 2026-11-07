@@ -122,6 +122,39 @@ const companyFacts = [
   ["Company Classification", "Private Limited Company"],
 ];
 
+const CONTACT_EMAIL = "info@cyberjustice.uk";
+
+const contactCards = [
+  {
+    icon: Phone,
+    title: "Direct Case Intake & Hotline",
+    text: (
+      <>
+        Inquire directly via{" "}
+        <a href={`mailto:${CONTACT_EMAIL}`} className="font-semibold text-accent hover:underline">
+          {CONTACT_EMAIL}
+        </a>{" "}
+        or the confidential case form.
+      </>
+    ),
+  },
+  {
+    icon: Lock,
+    title: "100% Confidential",
+    text: "All inquiries are protected by strict non-disclosure and encrypted protocols.",
+  },
+  {
+    icon: Clock,
+    title: "Rapid 24-Hour Response",
+    text: "Our global forensic team analyzes case inquiries and responds within 24 hours.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Certified Investigators",
+    text: "UK-Registered and international forensic jurisdiction coverage.",
+  },
+];
+
 function Index() {
   const [word, setWord] = useState(0);
   useEffect(() => {
