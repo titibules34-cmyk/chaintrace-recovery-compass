@@ -449,8 +449,87 @@ function Index() {
         </div>
       </section>
 
-      <footer className="border-t border-border py-8 text-center text-xs text-muted-foreground">
-        <p>© {new Date().getFullYear()} Cyber Justice · No recovery outcome is guaranteed · Not legal or financial advice.</p>
+      <footer className="border-t border-border bg-card/40">
+        <div className="mx-auto grid w-[min(100%-2rem,72rem)] gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+          <div>
+            <p className="text-sm font-extrabold tracking-widest">
+              CYBER <span className="text-accent">JUSTICE</span>
+            </p>
+            <p className="mt-3 max-w-xs text-sm text-muted-foreground">
+              Boutique Cyber Intelligence &amp; Digital Asset Tracing group providing actionable
+              evidence to law firms, investigators, and institutions worldwide.
+            </p>
+            <div className="mt-5 flex items-start gap-3 rounded-xl border border-border bg-background/60 p-4">
+              <span className="rounded-md bg-primary/10 px-2 py-1 text-xs font-bold text-accent">UK</span>
+              <p className="text-xs leading-relaxed text-muted-foreground">
+                Cyber Justice Ltd · Co. No. 16458332 · Unit A1008, 4-6 Greatorex Street, London,
+                United Kingdom, E1 5NF
+              </p>
+            </div>
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="mt-3 flex items-center gap-3 rounded-xl border border-accent/40 bg-accent/10 p-4 transition hover:border-accent"
+            >
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-accent text-accent-foreground">
+                <Send className="h-4 w-4" aria-hidden="true" />
+              </span>
+              <span>
+                <span className="block text-[0.65rem] font-bold tracking-widest text-muted-foreground">
+                  OFFICIAL INQUIRIES &amp; CASE INTAKE
+                </span>
+                <span className="block text-sm font-bold text-accent">{CONTACT_EMAIL}</span>
+              </span>
+            </a>
+          </div>
+
+          <nav aria-label="Quick links">
+            <p className="eyebrow">Quick Links</p>
+            <ul className="mt-4 flex flex-col gap-2.5 text-sm text-muted-foreground">
+              <li><a href="#services" className="hover:text-foreground">All Services</a></li>
+              <li><a href="#tools" className="hover:text-foreground">Cyber Tools</a></li>
+              <li><a href="#offices" className="hover:text-foreground">Our Offices</a></li>
+              <li><a href="#contact" className="hover:text-foreground">Contact Us</a></li>
+            </ul>
+          </nav>
+
+          <nav aria-label="Services">
+            <p className="eyebrow">Services</p>
+            <ul className="mt-4 flex flex-col gap-2.5 text-sm text-muted-foreground">
+              <li><Link to="/asset-recovery" className="hover:text-foreground">Asset Tracing &amp; Investigations</Link></li>
+              <li><Link to="/cyber-intelligence" className="hover:text-foreground">Cyber Intelligence Services</Link></li>
+              <li><Link to="/cyber-investigation-team" className="hover:text-foreground">Cyber Investigation Team</Link></li>
+              <li><Link to="/cryptocurrency-tracing" className="hover:text-foreground">Cryptocurrency Tracing</Link></li>
+            </ul>
+          </nav>
+
+          <div>
+            <p className="eyebrow">Our Credentials</p>
+            <p className="mt-4 text-sm text-muted-foreground">
+              Direct verification of Cyber Justice Ltd via Companies House, United Kingdom.
+            </p>
+            <dl className="mt-4 flex flex-col gap-2 text-xs text-muted-foreground">
+              <div className="flex justify-between gap-4 border-b border-border pb-2">
+                <dt>Company number</dt>
+                <dd className="font-semibold text-foreground">16458332</dd>
+              </div>
+              <div className="flex justify-between gap-4 border-b border-border pb-2">
+                <dt>Incorporated</dt>
+                <dd className="font-semibold text-foreground">19 May 2025</dd>
+              </div>
+              <div className="flex justify-between gap-4 border-b border-border pb-2">
+                <dt>Status</dt>
+                <dd className="font-semibold text-foreground">Active</dd>
+              </div>
+            </dl>
+            <a href="#contact" className="mt-5 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-5 py-2.5 text-sm font-semibold text-accent transition hover:border-accent">
+              Contact Case Intake
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+        <div className="border-t border-border py-6 text-center text-xs text-muted-foreground">
+          <p>© {new Date().getFullYear()} Cyber Justice Ltd · No recovery outcome is guaranteed · Not legal or financial advice.</p>
+        </div>
       </footer>
     </main>
   );
