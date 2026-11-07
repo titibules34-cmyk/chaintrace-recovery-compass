@@ -359,7 +359,24 @@ function Index() {
               We offer complimentary consultations in order to determine if our Asset Recovery and
               Intelligence Services are right for your case.
             </p>
-            <div className="mt-8 flex flex-col gap-4">
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="mt-6 flex items-center gap-4 rounded-2xl border border-accent/40 bg-accent/10 p-5 transition hover:border-accent hover:bg-accent/15"
+            >
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent text-accent-foreground">
+                <Send className="h-6 w-6" aria-hidden="true" />
+              </span>
+              <span>
+                <span className="eyebrow block">Email us directly</span>
+                <span className="mt-1 block text-lg font-extrabold tracking-tight text-accent sm:text-2xl">
+                  {CONTACT_EMAIL}
+                </span>
+                <span className="mt-0.5 block text-xs text-muted-foreground">
+                  Click to open your email app — we reply within 24 hours.
+                </span>
+              </span>
+            </a>
+            <div className="mt-6 flex flex-col gap-4">
               {contactCards.map(({ icon: Icon, title, text }) => (
                 <div key={title} className="flex items-start gap-4 rounded-xl border border-border bg-card p-5 transition hover:border-primary">
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-accent">
