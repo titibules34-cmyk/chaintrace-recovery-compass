@@ -215,7 +215,54 @@ function Index() {
           CYBER <span className="text-accent">JUSTICE</span>
         </a>
         <nav className="flex items-center gap-5 text-sm text-muted-foreground">
-          <a href="#services" className="hidden hover:text-foreground sm:inline">Services</a>
+          <div
+            ref={servicesRef}
+            className="relative"
+            onMouseEnter={() => setServicesOpen(true)}
+            onMouseLeave={() => setServicesOpen(false)}
+          >
+            <button
+              type="button"
+              aria-expanded={servicesOpen}
+              aria-haspopup="true"
+              onClick={() => setServicesOpen((v) => !v)}
+              className="inline-flex items-center gap-1 hover:text-foreground"
+            >
+              Services
+              <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${servicesOpen ? "rotate-180 text-accent" : ""}`} />
+            </button>
+            {servicesOpen && (
+              <div className="absolute right-0 top-full z-50 w-[min(88vw,21rem)] pt-3">
+                <div className="menu-in rounded-2xl border border-border bg-popover p-2 shadow-glow">
+                  {servicesNav.map(({ to, icon: Icon, title, text }) => (
+                    <Link
+                      key={to}
+                      to={to}
+                      onClick={() => setServicesOpen(false)}
+                      className="flex items-start gap-3 rounded-xl p-3 transition hover:bg-secondary"
+                    >
+                      <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-primary/15 bg-primary/10 text-primary">
+                        <Icon className="h-4 w-4" strokeWidth={1.75} />
+                      </span>
+                      <span className="min-w-0">
+                        <span className="block font-semibold text-foreground">{title}</span>
+                        <span className="mt-0.5 block text-xs leading-5 text-muted-foreground">{text}</span>
+                      </span>
+                    </Link>
+                  ))}
+                  <div className="mt-1 border-t border-border px-3 py-2">
+                    <a
+                      href="#services"
+                      onClick={() => setServicesOpen(false)}
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-accent hover:underline"
+                    >
+                      View all services <ArrowRight className="h-3.5 w-3.5" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
           <a href="#offices" className="hidden hover:text-foreground sm:inline">Offices</a>
           <a href="#contact" className="rounded-full bg-primary px-4 py-1.5 font-semibold text-primary-foreground">Contact</a>
         </nav>
