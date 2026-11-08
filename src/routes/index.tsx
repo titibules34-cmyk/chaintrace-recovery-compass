@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const WORDS = ["digital", "tracing", "intelligence", "recovery"];
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Globe, Users, Monitor, DollarSign, Code2, BarChart3, MapPin, Lock, ShieldCheck, ArrowRight, Phone, Clock, Send } from "lucide-react";
+import { Globe, Users, Monitor, DollarSign, Code2, BarChart3, MapPin, Lock, ShieldCheck, ArrowRight, Phone, Clock, Send, ChevronDown, Search, Bitcoin } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -51,6 +51,33 @@ const services = [
     "/assets/crypto-tracing.png",
   ],
 ];
+
+const servicesNav = [
+  {
+    to: "/asset-recovery",
+    icon: Search,
+    title: "Asset Tracing & Investigations",
+    text: "Locate recoverable assets and build the evidence file.",
+  },
+  {
+    to: "/cyber-intelligence",
+    icon: Globe,
+    title: "Cyber Intelligence Services",
+    text: "OSINT-led research and website forensics.",
+  },
+  {
+    to: "/cyber-investigation-team",
+    icon: Users,
+    title: "Cyber Investigation Team",
+    text: "Certified investigators across 6 continents.",
+  },
+  {
+    to: "/cryptocurrency-tracing",
+    icon: Bitcoin,
+    title: "Cryptocurrency Tracing",
+    text: "Follow on-chain movement to the holding service.",
+  },
+] as const;
 
 const steps = [
   ["Scope", "Clarify what happened and what a review can establish."],
@@ -159,10 +186,28 @@ const contactCards = [
 
 function Index() {
   const [word, setWord] = useState(0);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const servicesRef = useRef<HTMLDivElement>(null);
+  const hoverOpen = useRef(false);
   useEffect(() => {
     const t = setInterval(() => setWord((w) => (w + 1) % WORDS.length), 2200);
     return () => clearInterval(t);
   }, []);
+  useEffect(() => {
+    if (!servicesOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setServicesOpen(false);
+    };
+    const onDown = (e: MouseEvent) => {
+      if (servicesRef.current && !servicesRef.current.contains(e.target as Node)) setServicesOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("mousedown", onDown);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("mousedown", onDown);
+    };
+  }, [servicesOpen]);
 
   return (
     <main className="min-h-screen">
@@ -171,7 +216,63 @@ function Index() {
           CYBER <span className="text-accent">JUSTICE</span>
         </a>
         <nav className="flex items-center gap-5 text-sm text-muted-foreground">
-          <a href="#services" className="hidden hover:text-foreground sm:inline">Services</a>
+          <div
+            ref={servicesRef}
+            className="relative"
+            onMouseEnter={() => {
+              hoverOpen.current = true;
+              setServicesOpen(true);
+            }}
+            onMouseLeave={() => {
+              hoverOpen.current = false;
+              setServicesOpen(false);
+            }}
+          >
+            <button
+              type="button"
+              aria-expanded={servicesOpen}
+              aria-haspopup="true"
+              onClick={() => {
+                if (hoverOpen.current) return;
+                setServicesOpen((v) => !v);
+              }}
+              className="inline-flex items-center gap-1 hover:text-foreground"
+            >
+              Services
+              <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${servicesOpen ? "rotate-180 text-accent" : ""}`} />
+            </button>
+            {servicesOpen && (
+              <div className="absolute right-0 top-full z-50 w-[min(88vw,21rem)] pt-3 max-sm:fixed max-sm:inset-x-4 max-sm:top-[4.25rem] max-sm:w-auto">
+                <div className="menu-in rounded-2xl border border-border bg-popover p-2 shadow-glow">
+                  {servicesNav.map(({ to, icon: Icon, title, text }) => (
+                    <Link
+                      key={to}
+                      to={to}
+                      onClick={() => setServicesOpen(false)}
+                      className="flex items-start gap-3 rounded-xl p-3 transition hover:bg-secondary"
+                    >
+                      <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-primary/15 bg-primary/10 text-primary">
+                        <Icon className="h-4 w-4" strokeWidth={1.75} />
+                      </span>
+                      <span className="min-w-0">
+                        <span className="block font-semibold text-foreground">{title}</span>
+                        <span className="mt-0.5 block text-xs leading-5 text-muted-foreground">{text}</span>
+                      </span>
+                    </Link>
+                  ))}
+                  <div className="mt-1 border-t border-border px-3 py-2">
+                    <a
+                      href="#services"
+                      onClick={() => setServicesOpen(false)}
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-accent hover:underline"
+                    >
+                      View all services <ArrowRight className="h-3.5 w-3.5" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
           <a href="#offices" className="hidden hover:text-foreground sm:inline">Offices</a>
           <a href="#contact" className="rounded-full bg-primary px-4 py-1.5 font-semibold text-primary-foreground">Contact</a>
         </nav>

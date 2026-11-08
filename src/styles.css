@@ -163,3 +163,7 @@
 @keyframes client-in { from { opacity: 0; transform: translateY(1.5rem); } to { opacity: 1; transform: none; } }
 @utility client-in { animation: client-in 0.6s cubic-bezier(.2,.7,.2,1) both; }
 @media (prefers-reduced-motion: reduce) { .client-in { animation: none; } }
+
+@keyframes menu-in { from { opacity: 0; transform: translateY(-0.4rem) scale(0.98); } to { opacity: 1; transform: none; } }
+@utility menu-in { animation: menu-in 0.18s ease-out both; }
+@media (prefers-reduced-motion: reduce) { .menu-in { animation: none; } }
