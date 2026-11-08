@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const WORDS = ["digital", "tracing", "intelligence", "recovery"];
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Globe, Users, Monitor, DollarSign, Code2, BarChart3, MapPin, Lock, ShieldCheck, ArrowRight, Phone, Clock, Send } from "lucide-react";
+import { Globe, Users, Monitor, DollarSign, Code2, BarChart3, MapPin, Lock, ShieldCheck, ArrowRight, Phone, Clock, Send, ChevronDown, Search, Bitcoin } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -51,6 +51,33 @@ const services = [
     "/assets/crypto-tracing.png",
   ],
 ];
+
+const servicesNav = [
+  {
+    to: "/asset-recovery",
+    icon: Search,
+    title: "Asset Tracing & Investigations",
+    text: "Locate recoverable assets and build the evidence file.",
+  },
+  {
+    to: "/cyber-intelligence",
+    icon: Globe,
+    title: "Cyber Intelligence Services",
+    text: "OSINT-led research and website forensics.",
+  },
+  {
+    to: "/cyber-investigation-team",
+    icon: Users,
+    title: "Cyber Investigation Team",
+    text: "Certified investigators across 6 continents.",
+  },
+  {
+    to: "/cryptocurrency-tracing",
+    icon: Bitcoin,
+    title: "Cryptocurrency Tracing",
+    text: "Follow on-chain movement to the holding service.",
+  },
+] as const;
 
 const steps = [
   ["Scope", "Clarify what happened and what a review can establish."],
