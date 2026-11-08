@@ -188,6 +188,7 @@ function Index() {
   const [word, setWord] = useState(0);
   const [servicesOpen, setServicesOpen] = useState(false);
   const servicesRef = useRef<HTMLDivElement>(null);
+  const hoverOpen = useRef(false);
   useEffect(() => {
     const t = setInterval(() => setWord((w) => (w + 1) % WORDS.length), 2200);
     return () => clearInterval(t);
