@@ -242,7 +242,7 @@ function Index() {
               <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${servicesOpen ? "rotate-180 text-accent" : ""}`} />
             </button>
             {servicesOpen && (
-              <div className="absolute right-0 top-full z-50 w-[min(88vw,21rem)] pt-3">
+              <div className="absolute right-0 top-full z-50 w-[min(88vw,21rem)] pt-3 max-sm:fixed max-sm:inset-x-4 max-sm:top-[4.25rem] max-sm:w-auto">
                 <div className="menu-in rounded-2xl border border-border bg-popover p-2 shadow-glow">
                   {servicesNav.map(({ to, icon: Icon, title, text }) => (
                     <Link
