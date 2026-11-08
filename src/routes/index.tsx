@@ -219,14 +219,23 @@ function Index() {
           <div
             ref={servicesRef}
             className="relative"
-            onMouseEnter={() => setServicesOpen(true)}
-            onMouseLeave={() => setServicesOpen(false)}
+            onMouseEnter={() => {
+              hoverOpen.current = true;
+              setServicesOpen(true);
+            }}
+            onMouseLeave={() => {
+              hoverOpen.current = false;
+              setServicesOpen(false);
+            }}
           >
             <button
               type="button"
               aria-expanded={servicesOpen}
               aria-haspopup="true"
-              onClick={() => setServicesOpen((v) => !v)}
+              onClick={() => {
+                if (hoverOpen.current) return;
+                setServicesOpen((v) => !v);
+              }}
               className="inline-flex items-center gap-1 hover:text-foreground"
             >
               Services
